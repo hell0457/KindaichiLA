@@ -64,9 +64,6 @@
     .episodes {
       display: none;
       margin-top: 10px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
       animation: fadeIn 0.3s ease-in-out;
     }
 
@@ -81,6 +78,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 1.2rem;
+      margin-bottom: 10px;
     }
 
     .episode:hover {
@@ -122,9 +120,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @media (min-width: 769px) {
+      .episodes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
     @media (max-width: 768px) {
       .episodes {
-        grid-template-columns: 1fr;
+        display: block;
       }
 
       .gen-title { font-size: 1.2rem; }
@@ -311,16 +317,7 @@
       episodeList.className = "episodes";
       episodeList.style.display = "none";
 
-      const half = Math.ceil(gen.episodes.length / 2);
-      const firstCol = gen.episodes.slice(0, half);
-      const secondCol = gen.episodes.slice(half);
-      const reordered = [];
-      for (let i = 0; i < half; i++) {
-        if (firstCol[i]) reordered.push(firstCol[i]);
-        if (secondCol[i]) reordered.push(secondCol[i]);
-      }
-
-      reordered.forEach((epTitle, index) => {
+      gen.episodes.forEach((epTitle, index) => {
         const ep = document.createElement("div");
         ep.className = "episode";
         ep.textContent = `${index + 1}. ${epTitle}`;
@@ -348,8 +345,8 @@
           currentVisible.previousSibling.classList.remove("open");
           currentVisible.style.display = "none";
         }
-        const isOpen = episodeList.style.display === "grid";
-        episodeList.style.display = isOpen ? "none" : "grid";
+        const isOpen = episodeList.style.display === "grid" || episodeList.style.display === "block";
+        episodeList.style.display = isOpen ? "none" : window.innerWidth > 768 ? "grid" : "block";
         title.classList.toggle("open", !isOpen);
         currentVisible = !isOpen ? episodeList : null;
       });
@@ -371,4 +368,5 @@
   </script>
 </body>
 </html>
+
 
