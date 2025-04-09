@@ -91,8 +91,182 @@
   </div>
 
   <script>
-    // JavaScript code đã có trong đoạn gốc, cắt bớt ở đây vì quá dài.
-    // Trong file thực tế sẽ giữ nguyên phần script.
+    const generationsData = [
+      {
+        title: "Thế hệ 1",
+        episodes: [
+          "Bí ẩn làng Lục Giác",
+          "Án Mạng Ở Hồ Hiren",
+          "Án Mạng Trên Đảo Hiho",
+          "Vụ Án Bảy Bí Ẩn Ở Trường",
+          "Án Mạng Trong Nhà Hát Opera",
+          "Vụ Án Khúc Hát Ru Từ Địa Ngục",
+          "Án Mạng Trong Mật Thất Ở Hida",
+          "Án Mạng Ở Lâu Đài Người Sáp",
+          "Vụ Án Tuyết Dạ Xoa [SP]",
+          "Tay Sai Của Quỷ Dữ",
+          "Án Mạng Ở Sơn Trang Tarot",
+          "Lệnh Truy Nã Kindaichi",
+          "Vụ Án Siêu Trộm Hào Hoa",
+          "Án Mạng Tại Dị Nhân Quán",
+          "Án Mạng Trên Đảo Nghĩa Địa",
+          "Vụ án Truyền thuyết người cá Thượng Hải [SP]"
+        ]
+      },
+      {
+        title: "Thế hệ 2",
+        episodes: [
+          "Vụ Án Con Tàu Ma P1",
+          "Vụ Án Con Tàu Ma P2",
+          "Vụ Án Đồng Franc Pháp Oan Nghiệt",
+          "Vụ Án Cánh Bướm Tử Thần P1",
+          "Vụ Án Cánh Bướm Tử Thần P2",
+          "Vụ Bắt Cóc Reika",
+          "Án Mạng Trong Rừng Ma Khuyển",
+          "Án Mạng Tại Lâu Đài Búp Bê Nga P1",
+          "Án Mạng Tại Lâu Đài Búp Bê Nga P2",
+          "Án Mạng Trên Chuyến Tàu Ảo Thuật [SP]"
+        ]
+      },
+      {
+        title: "Thế hệ 3",
+        episodes: ["Vụ án Truyền thuyết Ma Cà Rồng"]
+      },
+      {
+        title: "Thế hệ 4",
+        episodes: [
+          "Sát thủ cung Bọ Cạp",
+          "Án mạng ở lâu đài trò chơi",
+          "Án mạng ở đảo Ma Trơi P1",
+          "Án mạng ở đảo Ma Trơi P2",
+          "Vụ hành quyết Kindaichi P1",
+          "Vụ hành quyết Kindaichi P2",
+          "Án mạng tại làng Yukikage",
+          "Án mạng ở biệt thự Rosenkreuz P1",
+          "Án mạng ở biệt thự Rosenkreuz P2",
+          "Vụ án Báu Vật Cửu Long Hồng Kông [SP]",
+          "Án mạng tại trường luyện thi Ngục Môn [SP]"
+        ]
+      },
+      {
+        title: "Thế hệ 5",
+        episodes: [
+          "Vụ án bảy bí ẩn ở trường [Remake]",
+          "Án Mạng Trên Đảo Seiren P1",
+          "Án Mạng Trên Đảo Seiren P2",
+          "Án Mạng Ở Lò Rượu Bạch Xà",
+          "Ngôi trường hoang phế",
+          "Lệnh truy nã Kindaichi P1 [Remake]",
+          "Lệnh truy nã Kindaichi P2 [Remake]",
+          "Án mạng trong mật thất ở Hida [Remake]",
+          "Án mạng thứ ba của nhà hát Opera P1",
+          "Án mạng thứ ba của nhà hát Opera P2"
+        ]
+      }
+    ];
+
+    const videoLinks = {
+      "Thế hệ 1": [
+        "https://drive.google.com/file/d/1NqRRL5ja-7vz_owJZ_xLOpcdTaRknFDs/preview",
+        "https://drive.google.com/file/d/15sv6DJPIZBcuA1XJ-TWtjJr8mAdBobda/preview",
+        "https://drive.google.com/file/d/1ar2Qz2lESgMlyI1O1T9RDWPC5x2xwIIm/preview",
+        "https://drive.google.com/file/d/1DEtYvGmSfBWyiAiFfS6WJYyMylWe0bmi/preview",
+        "https://drive.google.com/file/d/1opK9JLpJTXzUyiEP_jM5P_1sxPVWMWpj/preview",
+        "https://drive.google.com/file/d/1NecjwNiIqXI4jp4Vwn_E34hj3mkxB8uC/preview",
+        "https://drive.google.com/file/d/1mW12aJl_5ea4p5Xk03aWWMmg_gPM7ze8/preview",
+        "https://drive.google.com/file/d/1XhEc92eHAZYUL88-nMowUDkoC-rzg-cL/preview",
+        "https://drive.google.com/file/d/1shqZe56vNFO-8ZzyVKB6qrsSUB6eRj5N/preview",
+        "https://drive.google.com/file/d/1UKV_ODyCqSks69gj21DOCWWMsypa2Wv5/preview",
+        "https://drive.google.com/file/d/1iXZykvO-IlXW2B64PBPPbRYRnaqu9G_3/preview",
+        "https://drive.google.com/file/d/1jGbPYVE5yTL9XnfiG7kAe1d_Q-mYxeC6/preview",
+        "https://drive.google.com/file/d/1EpIZAmbeSO4aTt-clFfU6OBFACh5On5r/preview",
+        "https://drive.google.com/file/d/149gTFMjT1Z5y849Sg4mAz4DNru6TmBZI/preview",
+        "https://drive.google.com/file/d/1Ba1ftVW4pJ3T7l3T5PByGy1zsZsf0-1g/preview",
+        "https://drive.google.com/file/d/1BGdDUXy_ays0q7RjcUiUX3ZS2v6U3QTR/preview"
+      ],
+      "Thế hệ 2": [
+        "https://drive.google.com/file/d/1haQGZq5PeHzr7rBgT2-CnYam95YeBwyx/preview",
+        "https://drive.google.com/file/d/1BKl2AOo7_rDUBAnX7ETXcjNfoZRnhp6P/preview",
+        "https://drive.google.com/file/d/1FEqsHCEqnDl5O6ho8mWWL7VXt7o6VBOZ/preview",
+        "https://drive.google.com/file/d/1JN5eWnfb2GPKi5koZkjze6OO47UAojLN/preview",
+        "https://drive.google.com/file/d/1uH72TddQH1YwJSRIBsYDbP2o5Be68tHz/preview",
+        "https://drive.google.com/file/d/1ix7YHBX4B1PIMmpGLL5dCjG3ZpVTJzlS/preview",
+        "https://drive.google.com/file/d/17vEeUM7aBJtkfJp-P0PNmPLewT75ewv3/preview",
+        "https://drive.google.com/file/d/1htConBNZWJieWs7eVV12C-ucHpdMJFn4/preview",
+        "https://drive.google.com/file/d/1btcEG8ZL_mzKo7SBJ9fT1TGYrR0McE5-/preview",
+        "https://drive.google.com/file/d/1FCH8jN5NUIPoJR1Ss0BF-SBWypecNjIF/preview"
+      ],
+      "Thế hệ 3": ["https://drive.google.com/file/d/1bLbvLjtyiPl-XdqxMTxmdUW1fVJBqaBd/preview"],
+      "Thế hệ 4": [
+        "https://drive.google.com/file/d/1XIt0GRKgZG0cRAvasMGu1tXW0PbvPQnq/preview",
+        "https://drive.google.com/file/d/1GTrQGv0GpZH6WAnrEpNi3auqUoH5BrWy/preview",
+        "https://drive.google.com/file/d/1MNNGfcbeaOlAftNyIVddfvJSqCegrPH-/preview",
+        "https://drive.google.com/file/d/1KG-3zn-7zV0V-QLfifXpPaV72iRPR849/preview",
+        "https://drive.google.com/file/d/14wzNZ5nk0Q2TeoeJlk7j8uhcPZmaNuHf/preview",
+        "https://drive.google.com/file/d/1TaDcly-ya7-Lr4P866NPKvzYVEZK7xy9/preview",
+        "https://drive.google.com/file/d/1RV0Hy_h5MHAu67LBFM1Wam9TuhCM5MA8/preview",
+        "https://drive.google.com/file/d/1Ndoy2pbVaOYG6cQ6GXjUagT0RMGz1wio/preview",
+        "https://drive.google.com/file/d/1nh_i-BMKoVLFaTFWLjPt69aRE5bWUDmh/preview",
+        "https://drive.google.com/file/d/1NPumiZWU7-IXulUse_42L8HFtjrmgCMi/preview",
+        "https://drive.google.com/file/d/1BPFj3TQ476K7Xmq8tifSJ7amjW2zB51k/preview"
+      ],
+      "Thế hệ 5": [
+        "https://drive.google.com/file/d/1Rt-qoRPbE1bk-ObEaZ59VlMtBR74BBzO/preview",
+        "https://drive.google.com/file/d/1RhyJuvLdDFsI0mHS5aIj6YDGwg83cHPk/preview",
+        "https://drive.google.com/file/d/151fmlNrdxTPz24fcQpjpsRJPMOr5C7cR/preview",
+        "https://drive.google.com/file/d/1mxyJ3eFcYIyyR7duvBoU6Y3sIp_DE8RV/preview",
+        "https://drive.google.com/file/d/1OhCuqQ-spohRslKBLqQM9Bj0X4gKnLjX/preview",
+        "https://drive.google.com/file/d/1Dgp4zfs96HCaAWplB254az8zel4MnYIY/preview",
+        "https://drive.google.com/file/d/18OrSiIWnG-tMZ6FHa4APaLH4vdALKlKw/preview",
+        "https://drive.google.com/file/d/1qvI0WYtMlE71qXrNmu-nvBdzk-JTfriY/preview",
+        "https://drive.google.com/file/d/16GeqiRLa4H3yLvswVHtF0nRfKOm9B-bo/preview",
+        "https://drive.google.com/file/d/1iFC_43ztWhXN3Mzi87cJSsmCRJ35RbYa/preview"
+      ]
+    };
+
+    const generationsContainer = document.getElementById("generations");
+    let currentVisible = null;
+
+    generationsData.forEach((gen) => {
+      const genDiv = document.createElement("div");
+      genDiv.className = "generation";
+
+      const title = document.createElement("div");
+      title.className = "gen-title";
+      title.textContent = gen.title;
+
+      const episodeList = document.createElement("div");
+      episodeList.className = "episodes";
+
+      gen.episodes.forEach((epTitle, index) => {
+        const ep = document.createElement("div");
+        ep.className = "episode";
+        ep.textContent = `${index + 1}. ${epTitle}`;
+        ep.addEventListener("click", () => {
+          const videoUrl = videoLinks[gen.title][index];
+          const iframe = document.getElementById("video-frame");
+          iframe.src = videoUrl;
+
+          const container = document.getElementById("video-container");
+          container.style.display = "flex";
+
+          container.scrollIntoView({ behavior: "smooth" });
+        });
+        episodeList.appendChild(ep);
+      });
+
+      title.addEventListener("click", () => {
+        if (currentVisible && currentVisible !== episodeList) {
+          currentVisible.style.display = "none";
+        }
+        episodeList.style.display = episodeList.style.display === "flex" ? "none" : "flex";
+        currentVisible = episodeList.style.display === "flex" ? episodeList : null;
+      });
+
+      genDiv.appendChild(title);
+      genDiv.appendChild(episodeList);
+      generationsContainer.appendChild(genDiv);
+    });
   </script>
 </body>
 </html>
