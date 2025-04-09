@@ -32,7 +32,7 @@
 
     .generation {
       width: 100%;
-      max-width: 400px;
+      max-width: 960px;
     }
 
     .gen-title {
@@ -64,19 +64,26 @@
     .episodes {
       display: none;
       margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
+      justify-content: flex-start;
       animation: fadeIn 0.3s ease-in-out;
     }
 
     .episode {
-      padding: 10px;
+      padding: 10px 20px;
       background: #1e1e1e;
       border-radius: 12px;
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
       text-align: center;
+      min-width: 200px;
+      max-width: 100%;
+      flex: 0 0 calc(50% - 10px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .episode:hover {
@@ -120,7 +127,10 @@
 
     @media (max-width: 768px) {
       .gen-title { font-size: 1.2rem; }
-      .episode { font-size: 0.95rem; }
+      .episode {
+        font-size: 0.95rem;
+        min-width: 150px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -326,8 +336,8 @@
           currentVisible.previousSibling.classList.remove("open");
           currentVisible.style.display = "none";
         }
-        const isOpen = episodeList.style.display === "grid";
-        episodeList.style.display = isOpen ? "none" : "grid";
+        const isOpen = episodeList.style.display === "flex";
+        episodeList.style.display = isOpen ? "none" : "flex";
         title.classList.toggle("open", !isOpen);
         currentVisible = !isOpen ? episodeList : null;
       });
@@ -350,4 +360,3 @@
   </script>
 </body>
 </html>
-
