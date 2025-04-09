@@ -57,6 +57,12 @@
       background: #2a2a2a;
     }
 
+    .episode.active {
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+    }
+
     #video-container {
       margin-top: 30px;
       display: none;
@@ -88,6 +94,16 @@
     @media (max-width: 768px) {
       .gen-title { font-size: 1.2rem; }
       .episode { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 768px) {
+      :fullscreen .episode {
+        font-size: 0.75rem;
+      }
+
+      :fullscreen .gen-title {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -238,6 +254,7 @@
 
     const generationsContainer = document.getElementById("generations");
     let currentVisible = null;
+    let currentActive = null;
 
     generationsData.forEach((gen) => {
       const genDiv = document.createElement("div");
@@ -263,6 +280,12 @@
           container.style.display = "flex";
 
           container.scrollIntoView({ behavior: "smooth" });
+
+          if (currentActive) {
+            currentActive.classList.remove("active");
+          }
+          ep.classList.add("active");
+          currentActive = ep;
         });
         episodeList.appendChild(ep);
       });
@@ -293,4 +316,5 @@
   </script>
 </body>
 </html>
+
 
