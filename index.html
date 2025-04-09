@@ -65,7 +65,7 @@
       display: none;
       margin-top: 10px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       animation: fadeIn 0.3s ease-in-out;
     }
@@ -160,7 +160,6 @@
       <iframe id="video-frame" allowfullscreen></iframe>
     </div>
   </div>
-
   
   <script>
     const generationsData = [
@@ -312,16 +311,7 @@
       episodeList.className = "episodes";
       episodeList.style.display = "none";
 
-      const half = Math.ceil(gen.episodes.length / 2);
-      const firstCol = gen.episodes.slice(0, half);
-      const secondCol = gen.episodes.slice(half);
-      const reordered = [];
-      for (let i = 0; i < half; i++) {
-        if (firstCol[i]) reordered.push(firstCol[i]);
-        if (secondCol[i]) reordered.push(secondCol[i]);
-      }
-
-      reordered.forEach((epTitle, index) => {
+      gen.episodes.forEach((epTitle, index) => {
         const ep = document.createElement("div");
         ep.className = "episode";
         ep.textContent = `${index + 1}. ${epTitle}`;
