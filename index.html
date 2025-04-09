@@ -312,7 +312,16 @@
       episodeList.className = "episodes";
       episodeList.style.display = "none";
 
-      gen.episodes.forEach((epTitle, index) => {
+      const half = Math.ceil(gen.episodes.length / 2);
+      const firstCol = gen.episodes.slice(0, half);
+      const secondCol = gen.episodes.slice(half);
+      const reordered = [];
+      for (let i = 0; i < half; i++) {
+        if (firstCol[i]) reordered.push(firstCol[i]);
+        if (secondCol[i]) reordered.push(secondCol[i]);
+      }
+
+      reordered.forEach((epTitle, index) => {
         const ep = document.createElement("div");
         ep.className = "episode";
         ep.textContent = `${index + 1}. ${epTitle}`;
@@ -351,7 +360,6 @@
       generationsContainer.appendChild(genDiv);
     });
 
-    // Auto rotate landscape on fullscreen (mobile)
     document.addEventListener('fullscreenchange', async () => {
       if (document.fullscreenElement && /Mobi|Android/i.test(navigator.userAgent)) {
         try {
