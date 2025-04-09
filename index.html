@@ -24,13 +24,15 @@
     }
 
     #generations {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 16px;
+      justify-content: center;
     }
 
     .generation {
-      margin-bottom: 0;
+      flex: 1 1 180px;
+      max-width: 200px;
     }
 
     .gen-title {
@@ -41,6 +43,7 @@
       border-radius: 8px;
       transition: background 0.3s ease;
       position: relative;
+      text-align: center;
     }
 
     .gen-title::after {
@@ -62,7 +65,7 @@
       display: none;
       margin-top: 10px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       animation: fadeIn 0.3s ease-in-out;
     }
@@ -145,7 +148,6 @@
       <iframe id="video-frame" allowfullscreen></iframe>
     </div>
   </div>
-
 
   <script>
     const generationsData = [
@@ -295,6 +297,7 @@
 
       const episodeList = document.createElement("div");
       episodeList.className = "episodes";
+      episodeList.style.display = "none";
 
       gen.episodes.forEach((epTitle, index) => {
         const ep = document.createElement("div");
@@ -307,7 +310,6 @@
 
           const container = document.getElementById("video-container");
           container.style.display = "flex";
-
           container.scrollIntoView({ behavior: "smooth" });
 
           if (currentActive) {
@@ -347,7 +349,5 @@
     });
   </script>
 </body>
-</html>
-
 </html>
 
