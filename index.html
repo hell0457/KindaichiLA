@@ -64,16 +64,10 @@
     .episodes {
       display: none;
       margin-top: 10px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
       animation: fadeIn 0.3s ease-in-out;
-    }
-
-    .column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     .episode {
@@ -86,7 +80,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     .episode:hover {
@@ -129,6 +123,10 @@
     }
 
     @media (max-width: 768px) {
+      .episodes {
+        grid-template-columns: 1fr;
+      }
+
       .gen-title { font-size: 1.2rem; }
       .episode {
         font-size: 1rem;
@@ -162,6 +160,7 @@
       <iframe id="video-frame" allowfullscreen></iframe>
     </div>
   </div>
+
   
   <script>
     const generationsData = [
@@ -313,11 +312,6 @@
       episodeList.className = "episodes";
       episodeList.style.display = "none";
 
-      const col1 = document.createElement("div");
-      col1.className = "column";
-      const col2 = document.createElement("div");
-      col2.className = "column";
-
       gen.episodes.forEach((epTitle, index) => {
         const ep = document.createElement("div");
         ep.className = "episode";
@@ -338,23 +332,16 @@
           currentActive = ep;
         });
 
-        if (index < Math.ceil(gen.episodes.length / 2)) {
-          col1.appendChild(ep);
-        } else {
-          col2.appendChild(ep);
-        }
+        episodeList.appendChild(ep);
       });
-
-      episodeList.appendChild(col1);
-      episodeList.appendChild(col2);
 
       title.addEventListener("click", () => {
         if (currentVisible && currentVisible !== episodeList) {
           currentVisible.previousSibling.classList.remove("open");
           currentVisible.style.display = "none";
         }
-        const isOpen = episodeList.style.display === "flex";
-        episodeList.style.display = isOpen ? "none" : "flex";
+        const isOpen = episodeList.style.display === "grid";
+        episodeList.style.display = isOpen ? "none" : "grid";
         title.classList.toggle("open", !isOpen);
         currentVisible = !isOpen ? episodeList : null;
       });
