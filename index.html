@@ -64,10 +64,9 @@
     .episodes {
       display: none;
       margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      justify-content: space-between;
       animation: fadeIn 0.3s ease-in-out;
     }
 
@@ -78,7 +77,6 @@
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
       text-align: center;
-      width: calc(50% - 10px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -157,6 +155,8 @@
       <iframe id="video-frame" allowfullscreen></iframe>
     </div>
   </div>
+
+  
   <script>
     const generationsData = [
       {
@@ -334,8 +334,8 @@
           currentVisible.previousSibling.classList.remove("open");
           currentVisible.style.display = "none";
         }
-        const isOpen = episodeList.style.display === "flex";
-        episodeList.style.display = isOpen ? "none" : "flex";
+        const isOpen = episodeList.style.display === "grid";
+        episodeList.style.display = isOpen ? "none" : "grid";
         title.classList.toggle("open", !isOpen);
         currentVisible = !isOpen ? episodeList : null;
       });
@@ -358,4 +358,3 @@
   </script>
 </body>
 </html>
-
