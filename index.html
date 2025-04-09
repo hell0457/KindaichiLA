@@ -34,6 +34,18 @@
       padding: 15px;
       border-radius: 8px;
       transition: background 0.3s ease;
+      position: relative;
+    }
+
+    .gen-title::after {
+      content: '\25BC';
+      position: absolute;
+      right: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .gen-title.open::after {
+      transform: rotate(180deg);
     }
 
     .gen-title:hover {
@@ -303,10 +315,13 @@
 
       title.addEventListener("click", () => {
         if (currentVisible && currentVisible !== episodeList) {
+          currentVisible.previousSibling.classList.remove("open");
           currentVisible.style.display = "none";
         }
-        episodeList.style.display = episodeList.style.display === "grid" ? "none" : "grid";
-        currentVisible = episodeList.style.display === "grid" ? episodeList : null;
+        const isOpen = episodeList.style.display === "grid";
+        episodeList.style.display = isOpen ? "none" : "grid";
+        title.classList.toggle("open", !isOpen);
+        currentVisible = !isOpen ? episodeList : null;
       });
 
       genDiv.appendChild(title);
@@ -324,9 +339,6 @@
         }
       }
     });
-  </script>
-</body>
-</html>
   </script>
 </body>
 </html>
