@@ -63,13 +63,21 @@
       justify-content: center;
     }
 
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
     iframe {
       width: 100%;
-      max-width: 1280px;
-      aspect-ratio: 16 / 9;
+      height: 100%;
       border: none;
-      display: block;
-      margin: 0 auto;
     }
 
     @keyframes fadeIn {
@@ -89,7 +97,9 @@
   <div id="generations"></div>
 
   <div id="video-container">
-    <iframe id="video-frame" allowfullscreen></iframe>
+    <div class="video-wrapper">
+      <iframe id="video-frame" allowfullscreen></iframe>
+    </div>
   </div>
 
   <script>
@@ -269,6 +279,18 @@
       genDiv.appendChild(episodeList);
       generationsContainer.appendChild(genDiv);
     });
+
+    // Auto rotate landscape on fullscreen (mobile)
+    document.addEventListener('fullscreenchange', async () => {
+      if (document.fullscreenElement && /Mobi|Android/i.test(navigator.userAgent)) {
+        try {
+          await screen.orientation.lock('landscape');
+        } catch (err) {
+          console.log("Không thể xoay ngang:", err);
+        }
+      }
+    });
   </script>
 </body>
 </html>
+
