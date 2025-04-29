@@ -155,17 +155,6 @@
       }
     }
   </style>
-  
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-06VKKYR0TM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-06VKKYR0TM');
-</script>
-  
 </head>
 <body>
 <!-- ✅ Bộ đếm ở góc phải trên cùng - tối ưu mobile -->
@@ -342,11 +331,6 @@
         ep.className = "episode";
         ep.textContent = `${index + 1}. ${epTitle}`;
         ep.addEventListener("click", () => {
-          gtag('event', 'click_episode', {
-  'event_category': 'Video',
-  'event_label': epTitle
-});
-
           const videoUrl = videoLinks[gen.title][index];
           const iframe = document.getElementById("video-frame");
           iframe.src = videoUrl;
@@ -393,5 +377,4 @@
   </script>
 </body>
 </html>
-
 
