@@ -180,14 +180,7 @@
   
   <script>
 
-    // ✅ Gửi tên tập vào Google Sheet mỗi khi người dùng bấm
-function logEpisodeView(episodeName) {
-  fetch("https://script.google.com/macros/s/AKfycbxWKS073ITAuCYCCCqpe5ceynuJZ2BzFVlsPDtQGfRpHRq1kP5i1EV53UXGUtvWmfuimw/exec", {
-    method: "POST",
-    body: JSON.stringify({ episode: episodeName }),
-    mode: "no-cors"
-  }).catch(err => console.error("Lỗi ghi vào Google Sheet:", err));
-}
+  
 
      
     const generationsData = [
@@ -345,10 +338,10 @@ function logEpisodeView(episodeName) {
         ep.textContent = `${index + 1}. ${epTitle}`;
         ep.addEventListener("click", () => {
           const videoUrl = videoLinks[gen.title][index];
-          const iframe = document.getElementById("video-frame");
-          iframe.src = videoUrl;
+  const iframe = document.getElementById("video-frame");
+  iframe.src = videoUrl;
 
-          // Gửi dữ liệu vào Google Sheets
+  // ✅ Gửi tên tập vào Google Sheets
   logEpisodeView(epTitle);
 
   const container = document.getElementById("video-container");
@@ -390,6 +383,15 @@ function logEpisodeView(episodeName) {
         }
       }
     });
+     // ✅ Gửi tên tập vào Google Sheet mỗi khi người dùng bấm
+function logEpisodeView(episodeName) {
+  fetch("https://script.google.com/macros/s/AKfycbxWKS073ITAuCYCCCqpe5ceynuJZ2BzFVlsPDtQGfRpHRq1kP5i1EV53UXGUtvWmfuimw/exec", {
+    method: "POST",
+    body: JSON.stringify({ episode: episodeName }),
+    mode: "no-cors"
+  }).catch(err => console.error("Lỗi ghi vào Google Sheet:", err));
+}
+
   </script>
 </body>
 </html>
