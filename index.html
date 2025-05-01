@@ -337,16 +337,19 @@
           const iframe = document.getElementById("video-frame");
           iframe.src = videoUrl;
 
-          const container = document.getElementById("video-container");
-          container.style.display = "flex";
-          container.scrollIntoView({ behavior: "smooth" });
+          // Gửi dữ liệu vào Google Sheets
+  logEpisodeView(epTitle);
 
-          if (currentActive) {
-            currentActive.classList.remove("active");
-          }
-          ep.classList.add("active");
-          currentActive = ep;
-        });
+  const container = document.getElementById("video-container");
+  container.style.display = "flex";
+  container.scrollIntoView({ behavior: "smooth" });
+
+  if (currentActive) {
+    currentActive.classList.remove("active");
+  }
+  ep.classList.add("active");
+  currentActive = ep;
+});
 
         episodeList.appendChild(ep);
       });
